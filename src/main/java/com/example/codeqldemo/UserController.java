@@ -17,8 +17,8 @@ public class UserController {
 
     @GetMapping("/search")
     public List<Map<String, Object>> searchUsers(@RequestParam String username) {
-        String sql = "SELECT * FROM users WHERE username LIKE '%" + username + "%'";
-        return jdbcTemplate.queryForList(sql);
+        String sql = "SELECT * FROM users WHERE username LIKE ?";
+        return jdbcTemplate.queryForList(sql, "%" + username + "%");
     }
 
     @GetMapping
